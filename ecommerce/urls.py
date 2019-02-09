@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url,include
 from products import views as product_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    url(r'^$',product_views.home),
+    url(r'^$',product_views.home,name='home'),
+    url(r'^products/$',product_views.all,name='products'),
     url(r'^admin/', admin.site.urls)
     
 ]
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
