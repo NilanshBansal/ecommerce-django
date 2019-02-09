@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^$',product_views.home,name='home'),
     url(r'^products/$',product_views.all,name='products'),
+    url(r'^products/(?P<slug>[\w-]+)/$',product_views.single,name='single_product'),
     url(r'^admin/', admin.site.urls)
     
 ]
